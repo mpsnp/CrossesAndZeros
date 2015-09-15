@@ -27,6 +27,7 @@ type
         DraggableCrosses: array of TImage;
         procedure AddImagesToPanel(Target: TObject; Image: TPicture;
             var HolderArray: TImageArray);
+        function GenerateCrossImage(Offsets: integer): TPicture;
     public
         { public declarations }
     end;
@@ -65,9 +66,7 @@ begin
     end;
 end;
 
-procedure TFormMain.FormCreate(Sender: TObject);
-const
-    Offsets: integer = 10;
+function TFormMain.GenerateCrossImage(Offsets: integer): TPicture;
 var
     Image: TPicture;
 begin
@@ -82,7 +81,14 @@ begin
         Line(Offsets, Offsets, ImageSize - Offsets, ImageSize - Offsets);
         Line(ImageSize - Offsets, Offsets, Offsets, ImageSize - Offsets);
     end;
-    AddImagesToPanel(GroupBoxPlayer1, Image, DraggableCrosses);
+    Result := Image;
+end;
+
+procedure TFormMain.FormCreate(Sender: TObject);
+const
+    Offsets: integer = 10;
+begin
+    AddImagesToPanel(GroupBoxPlayer1, GenerateCrossImage(Offsets), DraggableCrosses);
 end;
 
 procedure TFormMain.MouseDownOnImage(Sender: TObject; Button: TMouseButton;
