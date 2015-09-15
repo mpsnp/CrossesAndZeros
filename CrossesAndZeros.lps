@@ -4,7 +4,7 @@
     <PathDelim Value="\"/>
     <Version Value="9"/>
     <BuildModes Active="Default"/>
-    <Units Count="2">
+    <Units Count="3">
       <Unit0>
         <Filename Value="CrossesAndZeros.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -21,14 +21,20 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="MainForm"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="34"/>
-        <CursorPos X="41" Y="63"/>
+        <TopLine Value="66"/>
+        <CursorPos Y="85"/>
         <UsageCount Value="20"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit1>
+      <Unit2>
+        <Filename Value="C:\lazarus\lcl\controls.pp"/>
+        <UnitName Value="Controls"/>
+        <EditorIndex Value="-1"/>
+        <UsageCount Value="10"/>
+      </Unit2>
     </Units>
-    <JumpHistory Count="15" HistoryIndex="14">
+    <JumpHistory Count="22" HistoryIndex="21">
       <Position1>
         <Filename Value="mainform.pas"/>
         <Caret Line="13" Column="3" TopLine="19"/>
@@ -89,6 +95,34 @@
         <Filename Value="mainform.pas"/>
         <Caret Line="40" Column="10" TopLine="48"/>
       </Position15>
+      <Position16>
+        <Filename Value="mainform.pas"/>
+        <Caret Line="41" Column="65" TopLine="31"/>
+      </Position16>
+      <Position17>
+        <Filename Value="mainform.pas"/>
+        <Caret Line="84" Column="62" TopLine="39"/>
+      </Position17>
+      <Position18>
+        <Filename Value="mainform.pas"/>
+        <Caret Line="52" Column="45" TopLine="36"/>
+      </Position18>
+      <Position19>
+        <Filename Value="mainform.pas"/>
+        <Caret Line="29" Column="33" TopLine="40"/>
+      </Position19>
+      <Position20>
+        <Filename Value="mainform.pas"/>
+        <Caret Line="79" Column="17" TopLine="59"/>
+      </Position20>
+      <Position21>
+        <Filename Value="mainform.pas"/>
+        <Caret Line="73" Column="12" TopLine="59"/>
+      </Position21>
+      <Position22>
+        <Filename Value="mainform.pas"/>
+        <Caret Line="79" Column="29" TopLine="65"/>
+      </Position22>
     </JumpHistory>
   </ProjectSession>
 </CONFIG>

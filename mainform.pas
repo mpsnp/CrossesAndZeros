@@ -13,8 +13,8 @@ const
 
 type
 
+    TImageArray = array of TImage;
     { TFormMain }
-
     TFormMain = class(TForm)
         GroupBoxPlayer1: TGroupBox;
         GroupBoxPlayer2: TGroupBox;
@@ -25,6 +25,8 @@ type
     private
         { private declarations }
         DraggableCrosses: array of TImage;
+        procedure AddImagesToPanel(Target: TObject; Image: TPicture;
+            var HolderArray: TImageArray);
     public
         { public declarations }
     end;
@@ -38,16 +40,15 @@ implementation
 
 { TFormMain }
 
-
-procedure TFormMain.FormCreate(Sender: TObject);
+procedure TFormMain.AddImagesToPanel(Target: TObject; Image: TPicture;
+    var HolderArray: TImageArray);
 const
     NumberOfDraggable: integer = 5;
-    Offsets: integer = 10;
 var
     i: integer;
     TempImage: TImage;
 begin
-    SetLength(DraggableCrosses, NumberOfDraggable);
+    SetLength(HolderArray, NumberOfDraggable);
     for I := 0 to High(DraggableCrosses) do
     begin
         DraggableCrosses[i] := TImage.Create(GroupBoxPlayer1);
@@ -59,18 +60,29 @@ begin
             Left := i * ImageSize;
             Parent := GroupBoxPlayer1;
             OnMouseDown := @MouseDownOnImage;
-            with Picture.Bitmap.Canvas do
-            begin
-                Brush.Color := clForm;
-                Pen.Color := clBlue;
-                Pen.Width := 2;
-                Picture.Bitmap.SetSize(ImageSize, ImageSize);
-                FillRect(0, 0, ImageSize, ImageSize);
-                Line(Offsets, Offsets, ImageSize - Offsets, ImageSize - Offsets);
-                Line(ImageSize - Offsets, Offsets, Offsets, ImageSize - Offsets);
-            end;
+            Picture := Image;
         end;
     end;
+end;
+
+procedure TFormMain.FormCreate(Sender: TObject);
+const
+    Offsets: integer = 10;
+var
+    Image: TPicture;
+begin
+    Image := TPicture.Create();
+    with Image.Bitmap.Canvas do
+    begin
+        Brush.Color := clForm;
+        Pen.Color := clBlue;
+        Pen.Width := 2;
+        Image.Bitmap.SetSize(ImageSize, ImageSize);
+        FillRect(0, 0, ImageSize, ImageSize);
+        Line(Offsets, Offsets, ImageSize - Offsets, ImageSize - Offsets);
+        Line(ImageSize - Offsets, Offsets, Offsets, ImageSize - Offsets);
+    end;
+    AddImagesToPanel(GroupBoxPlayer1, Image, DraggableCrosses);
 end;
 
 procedure TFormMain.MouseDownOnImage(Sender: TObject; Button: TMouseButton;
@@ -84,4 +96,3 @@ end;
 
 
 end.
-
