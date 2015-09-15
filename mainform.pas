@@ -6,7 +6,7 @@ interface
 
 uses
     Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, ExtCtrls,
-    StdCtrls;
+    StdCtrls, Grids;
 
 const
     ImageSize: integer = 40;
@@ -20,8 +20,10 @@ type
     TFormMain = class(TForm)
         GroupBoxPlayer1: TGroupBox;
         GroupBoxPlayer2: TGroupBox;
-        GamePanel: TPanel;
+        ImageGame: TImage;
         procedure FormCreate(Sender: TObject);
+        procedure ImageGamePaint(Sender: TObject);
+        procedure ImageGameResize(Sender: TObject);
         procedure MouseDownOnImage(Sender: TObject; Button: TMouseButton;
             Shift: TShiftState; X, Y: integer);
     private
@@ -63,6 +65,7 @@ begin
             Height := ImageSize;
             Top := 0;
             Left := i * ImageSize;
+            AntialiasingMode := amOn;
             Parent := Target as TWinControl;
             OnMouseDown := @MouseDownOnImage;
             Picture := Image;
@@ -105,6 +108,31 @@ begin
     AddImagesToPanel(GroupBoxPlayer1, GenerateImage(Offsets, @DrawCross),
         DraggableCrosses);
     AddImagesToPanel(GroupBoxPlayer2, GenerateImage(Offsets, @DrawZero), DraggableZeros);
+    ImageGame.Picture.Bitmap.SetSize(0, 0);
+end;
+
+procedure TFormMain.ImageGamePaint(Sender: TObject);
+const
+    Third: real = 0.33333333;
+var
+    ThirdWidth, ThirdHeight, i: integer;
+begin
+    with Sender as TImage do
+    begin
+        ThirdWidth := Round(Width * Third);
+        ThirdHeight := Round(Height * Third);
+        Canvas.Pen.Color := clBlack;
+        for  i := 1 to 2 do
+        begin
+            Canvas.Line(ThirdWidth * i, 0, ThirdWidth * i, Height);
+            Canvas.Line(0, ThirdHeight * i, Width, ThirdHeight * i);
+        end;
+    end;
+end;
+
+procedure TFormMain.ImageGameResize(Sender: TObject);
+begin
+    ImageGame.Invalidate;
 end;
 
 procedure TFormMain.MouseDownOnImage(Sender: TObject; Button: TMouseButton;

@@ -28,12 +28,13 @@ object FormMain: TFormMain
     Caption = 'Player 2'
     TabOrder = 1
   end
-  object GamePanel: TPanel
+  object ImageGame: TImage
     Left = 0
     Height = 242
     Top = 38
     Width = 227
     Align = alClient
-    TabOrder = 2
+    OnPaint = ImageGamePaint
+    OnResize = ImageGameResize
   end
 end
