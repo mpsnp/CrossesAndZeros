@@ -1,0 +1,39 @@
+object FormMain: TFormMain
+  Left = 333
+  Height = 280
+  Top = 208
+  Width = 227
+  Caption = 'FormMain'
+  ClientHeight = 280
+  ClientWidth = 227
+  OnCreate = FormCreate
+  LCLVersion = '1.4.2.0'
+  object GroupBoxPlayer1: TGroupBox
+    Left = 0
+    Height = 19
+    Top = 0
+    Width = 227
+    Align = alTop
+    AutoSize = True
+    Caption = 'Player 1'
+    TabOrder = 0
+  end
+  object GroupBoxPlayer2: TGroupBox
+    Left = 0
+    Height = 19
+    Top = 19
+    Width = 227
+    Align = alTop
+    AutoSize = True
+    Caption = 'Player 2'
+    TabOrder = 1
+  end
+  object GamePanel: TPanel
+    Left = 0
+    Height = 242
+    Top = 38
+    Width = 227
+    Align = alClient
+    TabOrder = 2
+  end
+end
