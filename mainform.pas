@@ -52,7 +52,6 @@ const
     NumberOfDraggable: integer = 5;
 var
     i: integer;
-    TempImage: TImage;
 begin
     SetLength(HolderArray, NumberOfDraggable);
     for I := 0 to High(HolderArray) do
@@ -71,8 +70,7 @@ begin
     end;
 end;
 
-function TFormMain.GenerateImage(Offsets: integer; DrawerFunc: TDrawProc
-    ): TPicture;
+function TFormMain.GenerateImage(Offsets: integer; DrawerFunc: TDrawProc): TPicture;
 begin
     Result := TPicture.Create();
     with Result.Bitmap.Canvas do
@@ -88,20 +86,24 @@ end;
 
 procedure TFormMain.DrawCross(DestinationBitmap: TBitmap; Offsets: integer);
 begin
-    DestinationBitmap.Canvas.Line(Offsets, Offsets, ImageSize - Offsets, ImageSize - Offsets);
-    DestinationBitmap.Canvas.Line(ImageSize - Offsets, Offsets, Offsets, ImageSize - Offsets);
+    DestinationBitmap.Canvas.Line(Offsets, Offsets, ImageSize - Offsets,
+        ImageSize - Offsets);
+    DestinationBitmap.Canvas.Line(ImageSize - Offsets, Offsets, Offsets,
+        ImageSize - Offsets);
 end;
 
 procedure TFormMain.DrawZero(DestinationBitmap: TBitmap; Offsets: integer);
 begin
-    DestinationBitmap.Canvas.Ellipse(Offsets, Offsets, ImageSize - Offsets, ImageSize - Offsets);
+    DestinationBitmap.Canvas.Ellipse(Offsets, Offsets, ImageSize -
+        Offsets, ImageSize - Offsets);
 end;
 
 procedure TFormMain.FormCreate(Sender: TObject);
 const
     Offsets: integer = 10;
 begin
-    AddImagesToPanel(GroupBoxPlayer1, GenerateImage(Offsets, @DrawCross), DraggableCrosses);
+    AddImagesToPanel(GroupBoxPlayer1, GenerateImage(Offsets, @DrawCross),
+        DraggableCrosses);
     AddImagesToPanel(GroupBoxPlayer2, GenerateImage(Offsets, @DrawZero), DraggableZeros);
 end;
 
